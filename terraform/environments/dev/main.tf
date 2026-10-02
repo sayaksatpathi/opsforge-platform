@@ -61,3 +61,11 @@ module "iam" {
   name   = local.name
   tags   = local.tags
 }
+
+# Billing guardrail: a monthly budget with alerts (see modules/budget).
+module "budget" {
+  source             = "../../modules/budget"
+  name               = local.name
+  limit_amount       = var.budget_limit
+  notification_email = var.budget_email
+}
